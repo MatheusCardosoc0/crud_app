@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "firstName": "aaa",
+      "lastName": "aaaa",
+      "email": "aaaa",
+      "genrer": "1",
+      "education": "Ensino superior",
+      "experience": 5,
+      "dob": "2023-04-11T03:00:00.000Z",
+      "id": 1
+    }
+  ]
+}
