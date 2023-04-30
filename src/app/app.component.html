@@ -4,12 +4,19 @@
   <button mat-raised-button (click)="openAddEditEmpForm()">Adicionar</button>
 </mat-toolbar>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
-</mat-form-field>
+<div class="search">
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
+  </mat-form-field>
+</div>
 
-<div class="mat-elevation-z8">
+<div class="table-container">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -31,32 +38,47 @@
 
     <!-- email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primero nome</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
       <td mat-cell *matCellDef="let row">{{ row.email }}</td>
     </ng-container>
 
-     <!-- gender Column -->
-     <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primero nome</th>
-      <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+    <!-- gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Gênero</th>
+      <td mat-cell *matCellDef="let row">{{ row.genrer }}</td>
     </ng-container>
 
-     <!-- dob Column -->
-     <ng-container matColumnDef="dob">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primero nome</th>
-      <td mat-cell *matCellDef="let row">{{ row.dob }}</td>
+    <!-- dob Column -->
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nascimento</th>
+      <td mat-cell *matCellDef="let row">{{ row.dob | date }}</td>
     </ng-container>
 
-     <!-- education Column -->
-     <ng-container matColumnDef="education">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primero nome</th>
+    <!-- education Column -->
+    <ng-container matColumnDef="education">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nivel de educação
+      </th>
       <td mat-cell *matCellDef="let row">{{ row.education }}</td>
     </ng-container>
 
-     <!-- experience Column -->
-     <ng-container matColumnDef="experience">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primero nome</th>
+    <!-- experience Column -->
+    <ng-container matColumnDef="experience">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Experiência</th>
       <td mat-cell *matCellDef="let row">{{ row.experience }}</td>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Açoes</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteEmployee(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

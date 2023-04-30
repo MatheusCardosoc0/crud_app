@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     'gender',
     'education',
     'experience',
+    'action',
   ];
   dataSource!: MatTableDataSource<any>;
 
@@ -54,10 +55,22 @@ export class AppComponent implements OnInit {
   getEmployeeList() {
     this._empService.getEmployeeList().subscribe({
       next: (res) => {
-        console.log('ee' + res)
+        console.log('ee' + res);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  deleteEmployee(id: number) {
+    this._empService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        alert('Pessoa deletada com sucesso');
+        this.getEmployeeList();
       },
       error: (err) => {
         console.log(err);
